@@ -19,10 +19,10 @@ y se pueden filtrar por tipo y buscar por nombre o municipio.
 | Token | Valor | Uso | Contraste |
 |---|---|---|---|
 | `--eje-primario` | `#1f5f3a` | Botones y acentos | Blanco encima: _x_:1 |
-| `--eje-secundario` | _completa_ | Navbar y pie | Blanco encima: _x_:1 |
+| `--eje-secundario` | `#d7d00f`| Navbar y pie | Blanco encima: _x_:1 |
 | `--eje-fondo` | `#faf6ee` | Fondo de la página | - |
-| `--eje-texto` | _completa_ | Texto general | Sobre el fondo: _x_:1 |
-| `--eje-fuente` | _completa_ | Toda la página | - |
+| `--eje-texto` | `#640a85` | Texto general | Sobre el fondo: _x_:1 |
+| `--eje-fuente` | `system-ui, sans-serif` | Toda la página | - |
 
 ## Cómo verificar
 ```bash
