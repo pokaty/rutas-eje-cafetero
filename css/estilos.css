@@ -23,7 +23,7 @@
   --eje-primario: #1f5f3a;   /* verde cafetal · botones y acentos  */
   --eje-fondo: #faf6ee;      /* crema         · fondo de la página */
   --eje-radio: 0.75rem;
-  --eje-secundario: #d7d00f;
+  --eje-secundario: #3e2c1c;   /* café oscuro · navbar y pie (texto blanco encima) */
   --eje-texto: #640a85;
   --eje-fuente: system-ui, sans-serif;
 
@@ -50,8 +50,8 @@
    *   --bs-body-color: var(--eje-texto)
    *   --bs-body-font-family -> var(--eje-fuente)
    */
-  --bs-body-color: var(--eje-primario)
-  --bs-body-font-family: var(--eje-fuente)
+  --bs-body-color: var(--eje-texto);
+  --bs-body-font-family: var(--eje-fuente);
 }
 
 /* ========== 3. COMPONENTES ========== */
@@ -74,12 +74,12 @@
  * Experimenta: en DevTools selecciona un botón de filtro -> pestaña Computed -> busca --bs-btn-color.
  */
 .btn-outline-primary {
-  --bs-btn-color: var(--eje-aventura)
-  --bs-btn-border-color: var(--eje-cultura)
-  --bs-btn-hover-bg: var(--eje-secundario)
-  --bs-btn-hover-border-color: var(--eje-secundario)
-  --bs-btn-active-bg: var(--eje-aventura)
-  --bs-btn-active-border-color: var(--eje-naturaleza)
+  --bs-btn-color: var(--eje-primario);
+  --bs-btn-border-color: var(--eje-primario);
+  --bs-btn-hover-bg: var(--eje-primario);
+  --bs-btn-hover-border-color: var(--eje-primario);
+  --bs-btn-active-bg: var(--eje-primario);
+  --bs-btn-active-border-color: var(--eje-primario);
 }
 
 /* Navbar y pie (se ven transparentes hasta que definas --eje-secundario) */
