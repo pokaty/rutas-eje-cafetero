@@ -172,7 +172,16 @@ function buscarPorTexto(lista, texto) {
  * Tus pruebas van en tests/reto.test.js.
  * ============================================================ */
 function ordenarRutas(lista, criterio) {
-  // TODO: implementar (RETO)
+  // sort() modifica el arreglo sobre el que se llama: se ordena una COPIA
+  const copia = [...lista];
+  if (criterio === 'nombre') {
+    copia.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
+  } else if (criterio === 'precio') {
+    copia.sort((a, b) => a.precio - b.precio);
+  } else if (criterio === 'duracion') {
+    copia.sort((a, b) => a.duracionHoras - b.duracionHoras);
+  }
+  return copia;
 }
 
 /* ============================================================
@@ -180,13 +189,13 @@ function ordenarRutas(lista, criterio) {
  * El estado guarda qué eligió la persona. Cada evento cambia el
  * estado y vuelve a pintar todo desde los DATOS.
  * ============================================================ */
-const estado = { tipo: 'todos', texto: '' };
+const estado = { tipo: 'todos', texto: '', orden: '' };
 
 function aplicarFiltros() {
   // ?? rutas -> mientras una función no esté implementada (devuelve undefined), se usan todas las rutas
   let resultado = filtrarPorTipo(rutas, estado.tipo) ?? rutas;
   resultado = buscarPorTexto(resultado, estado.texto) ?? resultado;
-  // RETO: aquí también se aplica ordenarRutas(resultado, estado.orden)
+  resultado = ordenarRutas(resultado, estado.orden);
   pintarRutas(resultado, document.querySelector('#lista-rutas'), document.querySelector('#resultado'));
 }
 
@@ -237,6 +246,12 @@ function iniciar() {
   // Paso 2: al escribir en el buscador -> cambia el estado y vuelve a pintar
   document.querySelector('#buscador').addEventListener('input', (evento) => {
     estado.texto = evento.target.value;
+    aplicarFiltros();
+  });
+
+  // Reto: al cambiar el select de orden -> cambia el estado y vuelve a pintar
+  document.querySelector('#orden').addEventListener('change', (evento) => {
+    estado.orden = evento.target.value;
     aplicarFiltros();
   });
 
