@@ -138,7 +138,8 @@ function pintarRutas(lista, contenedor, mensaje) {
  *   - Si no -> solo las rutas cuyo ruta.tipo sea igual a tipo.
  * ============================================================ */
 function filtrarPorTipo(lista, tipo) {
-  // TODO: implementar
+  if (tipo === 'todos') return [...lista];
+  return lista.filter((ruta) => ruta.tipo === tipo);
 }
 
 /* ============================================================
@@ -157,7 +158,12 @@ function filtrarPorTipo(lista, tipo) {
  *   - Si no -> las rutas cuyo nombre O municipio (normalizados) incluyan el texto.
  * ============================================================ */
 function buscarPorTexto(lista, texto) {
-  // TODO: implementar
+  const buscado = normalizar(texto);
+  if (buscado === '') return [...lista];
+  return lista.filter((ruta) =>
+    normalizar(ruta.nombre).includes(buscado) ||
+    normalizar(ruta.municipio).includes(buscado)
+  );
 }
 
 /* ============================================================
@@ -215,9 +221,24 @@ function aplicarFiltros() {
 function iniciar() {
   const botones = document.querySelectorAll('[data-tipo]');
 
-  // TODO G4.3 - paso 1: eventos 'click' de los botones
+  // Paso 1: clic en un filtro -> cambia el estado y vuelve a pintar
+  botones.forEach((boton) => {
+    boton.addEventListener('click', () => {
+      estado.tipo = boton.dataset.tipo;
+      botones.forEach((b) => {
+        const activo = b === boton;
+        b.classList.toggle('active', activo);
+        b.setAttribute('aria-pressed', String(activo));
+      });
+      aplicarFiltros();
+    });
+  });
 
-  // TODO G4.3 - paso 2: evento 'input' del buscador
+  // Paso 2: al escribir en el buscador -> cambia el estado y vuelve a pintar
+  document.querySelector('#buscador').addEventListener('input', (evento) => {
+    estado.texto = evento.target.value;
+    aplicarFiltros();
+  });
 
   aplicarFiltros(); // pinta todas las rutas al cargar
 }
